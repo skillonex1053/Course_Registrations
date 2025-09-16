@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Registration - Skillonex Academy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background-size: 800% 800%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+    }
+
+    /* Animated gradient keyframes */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative;
+      background: #fff;
+      color: #333;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      width: 360px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      margin: 10px 0 20px;
+      color: #2c5364;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: #3399cc;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
+    }
+    button:hover { background: #287ba0; }
+    .success-msg {
+      display: none;
+      color: green;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    /* Diagonal Ribbon */
+    .ribbon {
+      width: 150px;
+      height: 30px;
+      background: linear-gradient(90deg, #ff4757, #ff6b81);
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 30px;
+      position: absolute;
+      top: 20px;
+      left: -40px;
+      transform: rotate(-45deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Social icons */
+    .social-links {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .social-links a {
+      margin: 0 8px;
+      display: inline-block;
+    }
+    .social-links img {
+      width: 28px;
+      height: 28px;
+      transition: transform 0.3s ease;
+    }
+    .social-links img:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Ribbon -->
+    <div class="ribbon">Best Offer</div>
+
+    <h2>Course Registration</h2>
+
+    <form id="registrationForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <select id="course" required>
+        <option value="">Select Course</option>
+        <option value="Data Analytics">Data Analytics - ₹5000</option>
+        <option value="Python">Python - ₹2000</option>
+      </select>
+      <button type="submit">Register</button>
+    </form>
+
+    <!-- Success Message -->
+    <div class="success-msg" id="successMsg">
+      ✅ Thanks for registering! Redirecting to payment...
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://www.linkedin.com/company/skillonexacademy" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn">
+      </a>
+      <a href="https://www.instagram.com/skillonexacademy_01/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.youtube.com/@skillonexacademy" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz0b-rRZxrIbU9qamnSP1r8_esgh-x98SVUhi6ghLhhy16i7-J7l1_xlzpqHNX4M8TFlQ/exec";
+
+    document.getElementById("registrationForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      let data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        course: document.getElementById("course").value
+      };
+
+      try {
+        let response = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "text/plain;charset=utf-8" }
+        });
+
+        let result = await response.json();
+
+        if (result.result === "success") {
+          document.getElementById("registrationForm").style.display = "none";
+          document.getElementById("successMsg").style.display = "block";
+
+          setTimeout(() => {
+            if (data.course === "Data Analytics") {
+              window.location.href = "https://rzp.io/rzp/f0gHHWG";
+            } else if (data.course === "Python") {
+              window.location.href = "https://rzp.io/rzp/REjTpHnx";
+            }
+          }, 2000);
+        } else {
+          alert("⚠️ Error saving registration. Try again.");
+        }
+      } catch (err) {
+        alert("⚠️ Error: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
