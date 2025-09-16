@@ -12,12 +12,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       color: white;
+      padding: 10px;
+      box-sizing: border-box;
     }
 
-    /* Animated gradient keyframes */
+    /* Animated gradient */
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -31,18 +33,22 @@
       padding: 25px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      width: 360px;
+      width: 100%;
+      max-width: 400px;
       text-align: center;
       animation: fadeIn 1s ease-in-out;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     h2 {
       margin: 10px 0 20px;
       color: #2c5364;
     }
+
     input, select, button {
       width: 100%;
       padding: 12px;
@@ -50,7 +56,9 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
+      box-sizing: border-box;
     }
+
     button {
       background: #3399cc;
       color: white;
@@ -59,6 +67,7 @@
       transition: 0.3s;
     }
     button:hover { background: #287ba0; }
+
     .success-msg {
       display: none;
       color: green;
@@ -66,7 +75,7 @@
       font-weight: bold;
     }
 
-    /* Diagonal Ribbon */
+    /* Ribbon */
     .ribbon {
       width: 150px;
       height: 30px;
@@ -99,6 +108,25 @@
     }
     .social-links img:hover {
       transform: scale(1.2);
+    }
+
+    /* 📱 Mobile-specific adjustments */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+        border-radius: 10px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      input, select, button {
+        font-size: 13px;
+        padding: 10px;
+      }
+      .ribbon {
+        width: 120px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
